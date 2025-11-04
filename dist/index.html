@@ -25,49 +25,32 @@
   <body>
     <div id="root"></div>
     
+    <!-- LIMPIEZA COMPLETA PARA PWA BUILDER -->
     <script>
-      /* if ('serviceWorker' in navigator) {
-        window.addEventListener('load', async () => {
-          try {
-            // Primero, desregistrar cualquier SW existente
-            const registrations = await navigator.serviceWorker.getRegistrations();
-            for (let registration of registrations) {
-              await registration.unregister();
-              console.log('SW desregistrado:', registration);
-            }
-            
-            // Limpiar todas las cachés
-            if ('caches' in window) {
-              const cacheNames = await caches.keys();
-              await Promise.all(
-                cacheNames.map(cacheName => {
-                  console.log('Eliminando caché:', cacheName);
-                  return caches.delete(cacheName);
-                })
-              );
-            }
-            
-            // Registrar el nuevo SW
-            const registration = await navigator.serviceWorker.register('/sw.js');
-            console.log('SW registrado exitosamente:', registration);
-            
-            // Forzar actualización inmediata
-            if (registration.waiting) {
-              registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-            }
-            
-          } catch (error) {
-            console.error('Error con Service Worker:', error);
+      // Desregistrar TODOS los Service Workers
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for(let registration of registrations) {
+            registration.unregister();
+            console.log('Service Worker desregistrado:', registration.scope);
           }
         });
-        
-        // Escuchar actualizaciones del SW
-        navigator.serviceWorker.addEventListener('controllerchange', () => {
-          console.log('SW actualizado, recargando página...');
-          window.location.reload();
+      }
+      
+      // Limpiar TODAS las cachés
+      if ('caches' in window) {
+        caches.keys().then(function(names) {
+          for (let name of names) {
+            caches.delete(name);
+            console.log('Caché eliminada:', name);
+          }
         });
       }
-      */
+      
+      // Limpiar localStorage y sessionStorage
+      localStorage.clear();
+      sessionStorage.clear();
+      console.log('Storage limpiado para PWA Builder');
     </script>
   </body>
 </html>
