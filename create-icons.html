@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crear Iconos PWA</title>
+</head>
+<body>
+    <canvas id="canvas192" width="192" height="192" style="border: 1px solid #ccc; margin: 10px;"></canvas>
+    <canvas id="canvas512" width="512" height="512" style="border: 1px solid #ccc; margin: 10px;"></canvas>
+    <br>
+    <button onclick="downloadIcons()">Descargar Iconos</button>
+    
+    <script>
+        // Crear icono 192x192
+        const canvas192 = document.getElementById('canvas192');
+        const ctx192 = canvas192.getContext('2d');
+        
+        // Fondo azul (theme color)
+        ctx192.fillStyle = '#0284c7';
+        ctx192.fillRect(0, 0, 192, 192);
+        
+        // Texto blanco
+        ctx192.fillStyle = 'white';
+        ctx192.font = 'bold 48px Arial';
+        ctx192.textAlign = 'center';
+        ctx192.textBaseline = 'middle';
+        ctx192.fillText('CP', 96, 96);
+        
+        // Crear icono 512x512
+        const canvas512 = document.getElementById('canvas512');
+        const ctx512 = canvas512.getContext('2d');
+        
+        // Fondo azul (theme color)
+        ctx512.fillStyle = '#0284c7';
+        ctx512.fillRect(0, 0, 512, 512);
+        
+        // Texto blanco
+        ctx512.fillStyle = 'white';
+        ctx512.font = 'bold 128px Arial';
+        ctx512.textAlign = 'center';
+        ctx512.textBaseline = 'middle';
+        ctx512.fillText('CP', 256, 256);
+        
+        function downloadIcons() {
+            // Descargar 192x192
+            const link192 = document.createElement('a');
+            link192.download = 'icon-192x192.png';
+            link192.href = canvas192.toDataURL();
+            link192.click();
+            
+            // Descargar 512x512
+            setTimeout(() => {
+                const link512 = document.createElement('a');
+                link512.download = 'icon-512x512.png';
+                link512.href = canvas512.toDataURL();
+                link512.click();
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
