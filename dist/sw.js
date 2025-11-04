@@ -70,7 +70,7 @@ self.addEventListener('fetch', (event) => {
         if (response) {
           return response;
         }
-        
+
         // Si no, hacer fetch y cachear
         return fetch(event.request).then((response) => {
           // Solo cachear respuestas válidas
