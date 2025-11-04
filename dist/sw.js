@@ -1,4 +1,4 @@
-const CACHE_NAME = 'crowdprop-v1.1';
+const CACHE_NAME = 'crowdprop-v2.0';
 const urlsToCache = [
   '/',
   '/projects',
@@ -27,19 +27,42 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
+          // Eliminar TODAS las cachés anteriores, incluso si tienen nombres similares
           if (cacheName !== CACHE_NAME) {
             console.log('Eliminando cache antiguo:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
+    }).then(() => {
+      // Forzar que todos los clientes usen la nueva versión inmediatamente
+      return self.clients.claim();
     })
   );
-  self.clients.claim();
 });
 
 // Interceptar requests
 self.addEventListener('fetch', (event) => {
+  // Para iconos y manifest, siempre ir a la red primero
+  if (event.request.url.includes('icon-') || event.request.url.includes('manifest.json')) {
+    event.respondWith(
+      fetch(event.request).then((response) => {
+        if (response && response.status === 200) {
+          const responseToCache = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseToCache);
+          });
+        }
+        return response;
+      }).catch(() => {
+        // Solo si falla la red, usar caché
+        return caches.match(event.request);
+      })
+    );
+    return;
+  }
+
+  // Para el resto, usar estrategia cache-first
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
@@ -48,7 +71,7 @@ self.addEventListener('fetch', (event) => {
           return response;
         }
         
-        // Si no, hacer fetch y cachear para APIs importantes
+        // Si no, hacer fetch y cachear
         return fetch(event.request).then((response) => {
           // Solo cachear respuestas válidas
           if (!response || response.status !== 200 || response.type !== 'basic') {
