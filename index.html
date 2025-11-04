@@ -1,26 +1,52 @@
-<script>
-      if ('serviceWorker' in navigator) {
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CrowdProp - Crowdfunding Inmobiliario</title>
+    
+    <meta name="description" content="Invierte desde S/10 en propiedades reales del Perú. Crowdfunding inmobiliario con transparencia total.">
+    <meta name="theme-color" content="#0284c7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CrowdProp">
+    
+    <link rel="manifest" href="/manifest.json">
+    
+    <link rel="apple-touch-icon" href="/icon-192x192.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <script>
+      /* if ('serviceWorker' in navigator) {
         window.addEventListener('load', async () => {
           try {
-            // // INICIO: CÓDIGO TEMPORALMENTE DESACTIVADO PARA EL TEST DE PWA BUILDER
-            // const registrations = await navigator.serviceWorker.getRegistrations();
-            // for (let registration of registrations) {
-            //   await registration.unregister();
-            //   console.log('SW desregistrado:', registration);
-            // }
+            // Primero, desregistrar cualquier SW existente
+            const registrations = await navigator.serviceWorker.getRegistrations();
+            for (let registration of registrations) {
+              await registration.unregister();
+              console.log('SW desregistrado:', registration);
+            }
             
-            // if ('caches' in window) {
-            //   const cacheNames = await caches.keys();
-            //   await Promise.all(
-            //     cacheNames.map(cacheName => {
-            //       console.log('Eliminando caché:', cacheName);
-            //       return caches.delete(cacheName);
-            //     })
-            //   );
-            // }
-            // // FIN: CÓDIGO TEMPORALMENTE DESACTIVADO
+            // Limpiar todas las cachés
+            if ('caches' in window) {
+              const cacheNames = await caches.keys();
+              await Promise.all(
+                cacheNames.map(cacheName => {
+                  console.log('Eliminando caché:', cacheName);
+                  return caches.delete(cacheName);
+                })
+              );
+            }
             
-            // Registrar el nuevo SW (Línea que debe quedar activa)
+            // Registrar el nuevo SW
             const registration = await navigator.serviceWorker.register('/sw.js');
             console.log('SW registrado exitosamente:', registration);
             
@@ -40,4 +66,7 @@
           window.location.reload();
         });
       }
+      */
     </script>
+  </body>
+</html>
