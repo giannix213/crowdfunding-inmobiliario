@@ -70,8 +70,8 @@ const InstallPrompt = () => {
           </h4>
           <p className="text-sm text-gray-600 mb-3">
             {isIOS 
-              ? 'Añade CrowdProp a tu pantalla de inicio para acceso rápido'
-              : 'Instala la app para una mejor experiencia'
+              ? 'Añade CrowdProp a tu pantalla de inicio para ocultar la barra de direcciones'
+              : 'Instala la app para ocultar la barra de direcciones y tener experiencia nativa'
             }
           </p>
           

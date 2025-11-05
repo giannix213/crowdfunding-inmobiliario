@@ -23,6 +23,31 @@
       [alt*="five.ap"] {
         display: none !important;
       }
+      
+      /* Ocultar barra de direcciones en PWA */
+      @media (display-mode: fullscreen) {
+        body {
+          margin: 0;
+          padding: 0;
+          overflow-x: hidden;
+        }
+      }
+      
+      @media (display-mode: standalone) {
+        body {
+          margin: 0;
+          padding: 0;
+          overflow-x: hidden;
+        }
+      }
+      
+      /* Intentar ocultar elementos del navegador */
+      .browser-ui,
+      [class*="browser"],
+      [class*="address"],
+      [class*="url"] {
+        display: none !important;
+      }
     </style>
     <!-- Configuración para app nativa -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,6 +55,11 @@
     <meta name="apple-mobile-web-app-title" content="CrowdProp">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="CrowdProp">
+    
+    <!-- Ocultar barra de direcciones -->
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
     
     <!-- Ocultar elementos de navegador -->
     <meta name="format-detection" content="telephone=no">
@@ -125,21 +155,24 @@
         animation: glow 2s ease-in-out infinite;
       }
     </style>
-    <script type="module" crossorigin src="/assets/index-4d8H15FM.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BKuoaq6y.css">
+    <script type="module" crossorigin src="/assets/index-qLVDgBUk.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BR4wry9v.css">
   </head>
   <body>
     <div id="root"></div>
     
     <!-- LIMPIEZA COMPLETA PARA PWA BUILDER -->
     <script>
-      // Desregistrar TODOS los Service Workers
+      // Registrar Service Worker para PWA
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function(registrations) {
-          for(let registration of registrations) {
-            registration.unregister();
-            console.log('Service Worker desregistrado:', registration.scope);
-          }
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
         });
       }
       
@@ -157,6 +190,47 @@
       localStorage.clear();
       sessionStorage.clear();
       console.log('Storage limpiado para PWA Builder');
+      
+      // Simulador de retorno interactivo
+      document.addEventListener('DOMContentLoaded', function() {
+        const amountSlider = document.getElementById('investment-amount');
+        const termSelect = document.getElementById('investment-term');
+        
+        function updateCalculation() {
+          if (!amountSlider || !termSelect) return;
+          
+          const amount = parseInt(amountSlider.value);
+          const term = parseInt(termSelect.value);
+          const annualRate = 0.185; // 18.5% anual promedio
+          
+          const returnRate = (annualRate * term / 12);
+          const totalReturn = amount * (1 + returnRate);
+          const netProfit = totalReturn - amount;
+          
+          // Actualizar displays
+          const amountDisplay = document.getElementById('amount-display');
+          const initialInvestment = document.getElementById('initial-investment');
+          const returnRateDisplay = document.getElementById('return-rate');
+          const totalReturnDisplay = document.getElementById('total-return');
+          const netProfitDisplay = document.getElementById('net-profit');
+          
+          if (amountDisplay) amountDisplay.textContent = `S/ ${amount.toLocaleString()}`;
+          if (initialInvestment) initialInvestment.textContent = `S/ ${amount.toLocaleString()}`;
+          if (returnRateDisplay) returnRateDisplay.textContent = `${(annualRate * 100).toFixed(1)}% anual`;
+          if (totalReturnDisplay) totalReturnDisplay.textContent = `S/ ${Math.round(totalReturn).toLocaleString()}`;
+          if (netProfitDisplay) netProfitDisplay.textContent = `S/ ${Math.round(netProfit).toLocaleString()}`;
+        }
+        
+        if (amountSlider) {
+          amountSlider.addEventListener('input', updateCalculation);
+        }
+        if (termSelect) {
+          termSelect.addEventListener('change', updateCalculation);
+        }
+        
+        // Inicializar
+        setTimeout(updateCalculation, 1000);
+      });
     </script>
   </body>
 </html>
