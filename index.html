@@ -3,11 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <title>CrowdProp - Crowdfunding Inmobiliario</title>
     
     <meta name="description" content="Invierte desde S/10 en propiedades reales del Perú. Crowdfunding inmobiliario con transparencia total.">
-    <meta name="theme-color" content="#0284c7">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="msapplication-navbutton-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     
     <!-- Ocultar texto five.ap -->
     <style>
@@ -26,40 +28,74 @@
       
       /* Ocultar barra de direcciones en PWA */
       @media (display-mode: fullscreen) {
-        body {
-          margin: 0;
-          padding: 0;
-          overflow-x: hidden;
+        html, body {
+          margin: 0 !important;
+          padding: 0 !important;
+          overflow-x: hidden !important;
+          height: 100vh !important;
+          width: 100vw !important;
         }
       }
       
       @media (display-mode: standalone) {
-        body {
-          margin: 0;
-          padding: 0;
-          overflow-x: hidden;
+        html, body {
+          margin: 0 !important;
+          padding: 0 !important;
+          overflow-x: hidden !important;
+          height: 100vh !important;
+          width: 100vw !important;
         }
       }
       
-      /* Intentar ocultar elementos del navegador */
+      /* Forzar fullscreen en móviles */
+      @media screen and (max-width: 768px) {
+        html, body {
+          margin: 0 !important;
+          padding: 0 !important;
+          height: 100vh !important;
+          width: 100vw !important;
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          overflow-x: hidden !important;
+        }
+        
+        #root {
+          height: 100vh !important;
+          width: 100vw !important;
+          overflow-y: auto !important;
+          overflow-x: hidden !important;
+        }
+      }
+      
+      /* Ocultar elementos del navegador */
       .browser-ui,
       [class*="browser"],
       [class*="address"],
-      [class*="url"] {
+      [class*="url"],
+      [class*="navigation"],
+      [class*="toolbar"] {
         display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        height: 0 !important;
+        width: 0 !important;
       }
     </style>
     <!-- Configuración para app nativa -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="CrowdProp">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="CrowdProp">
     
-    <!-- Ocultar barra de direcciones -->
+    <!-- Ocultar barra de direcciones completamente -->
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="full-screen" content="yes">
     <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="360-fullscreen" content="true">
     
     <!-- Ocultar elementos de navegador -->
     <meta name="format-detection" content="telephone=no">
@@ -102,9 +138,22 @@
       
       /* Fullscreen para PWA */
       html, body {
-        height: 100vh;
-        overflow-x: hidden;
+        height: 100vh !important;
+        width: 100vw !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow-x: hidden !important;
         -webkit-overflow-scrolling: touch;
+        position: relative;
+      }
+      
+      /* Eliminar cualquier margen o padding del root */
+      #root {
+        height: 100vh !important;
+        width: 100vw !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow-x: hidden !important;
       }
       
       /* Ocultar elementos web cuando es PWA */
@@ -165,6 +214,31 @@
     
     <!-- LIMPIEZA COMPLETA PARA PWA BUILDER -->
     <script>
+      // Forzar fullscreen y ocultar barra de navegación
+      function hideAddressBar() {
+        if (window.innerHeight < window.outerHeight) {
+          setTimeout(() => {
+            window.scrollTo(0, 1);
+          }, 100);
+        }
+      }
+      
+      // Ejecutar al cargar
+      window.addEventListener('load', hideAddressBar);
+      window.addEventListener('orientationchange', hideAddressBar);
+      window.addEventListener('resize', hideAddressBar);
+      
+      // Prevenir zoom y scroll horizontal
+      document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+          e.preventDefault();
+        }
+      });
+      
+      document.addEventListener('gesturestart', function(e) {
+        e.preventDefault();
+      });
+      
       // Registrar Service Worker para PWA
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {

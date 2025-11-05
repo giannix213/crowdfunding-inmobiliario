@@ -3,6 +3,6 @@
       "target": {
         "namespace": "android_app",
         "package_name": "app.netlify.crowdprop.twa",
-        "sha256_cert_fingerprints": ["B3:14:2E:F2:FF:74:C9:20:B7:BA:38:71:27:84:19:9E:75:3C:45:B6:CF:48:23:31:85:CD:54:28:05:33:99:CA"]
+        "sha256_cert_fingerprints": ["41:C9:1F:7F:C4:7B:E2:4D:87:2D:EA:D2:4A:08:7F:D3:68:C3:19:2C:83:BA:F8:AC:EE:93:90:39:79:0C:1E:4E"]
       }
     }]

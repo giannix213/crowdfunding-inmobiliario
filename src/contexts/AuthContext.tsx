@@ -34,18 +34,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [])
 
   const login = async (email: string, password: string) => {
-    // Simulación de login - en producción aquí validarías el password
-    console.log('Login attempt with password:', password.length, 'characters')
-    const mockUser: User = {
-      id: '1',
-      email,
-      name: email.split('@')[0],
-      createdAt: new Date(),
-      totalInvested: 2450,
-      activeInvestments: 3
+    // Validar credenciales contra usuarios registrados
+    const registeredUsers = JSON.parse(localStorage.getItem('crowdprop_registered_users') || '[]')
+    const user = registeredUsers.find((u: any) => u.email === email && u.password === password)
+    
+    if (!user) {
+      throw new Error('Credenciales inválidas')
     }
-    setUser(mockUser)
-    localStorage.setItem('crowdprop_user', JSON.stringify(mockUser))
+    
+    // Remover password del objeto usuario antes de guardarlo en sesión
+    const { password: _, ...userWithoutPassword } = user
+    setUser(userWithoutPassword)
+    localStorage.setItem('crowdprop_user', JSON.stringify(userWithoutPassword))
   }
 
   const loginWithGoogle = async () => {
@@ -64,18 +64,33 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }
 
   const register = async (email: string, password: string, name: string) => {
-    // Simulación de registro - en producción aquí validarías y guardarías el password
-    console.log('Register attempt with password:', password.length, 'characters')
-    const mockUser: User = {
+    // Validar que el email no esté registrado
+    const registeredUsers = JSON.parse(localStorage.getItem('crowdprop_registered_users') || '[]')
+    const existingUser = registeredUsers.find((u: any) => u.email === email)
+    
+    if (existingUser) {
+      throw new Error('Este email ya está registrado')
+    }
+    
+    // Crear nuevo usuario
+    const newUser = {
       id: Date.now().toString(),
       email,
+      password, // En producción esto debería estar hasheado
       name,
       createdAt: new Date(),
       totalInvested: 0,
       activeInvestments: 0
     }
-    setUser(mockUser)
-    localStorage.setItem('crowdprop_user', JSON.stringify(mockUser))
+    
+    // Guardar en lista de usuarios registrados
+    registeredUsers.push(newUser)
+    localStorage.setItem('crowdprop_registered_users', JSON.stringify(registeredUsers))
+    
+    // Iniciar sesión automáticamente
+    const { password: _, ...userWithoutPassword } = newUser
+    setUser(userWithoutPassword)
+    localStorage.setItem('crowdprop_user', JSON.stringify(userWithoutPassword))
   }
 
   const logout = () => {

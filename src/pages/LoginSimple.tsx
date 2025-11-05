@@ -16,8 +16,8 @@ const LoginSimple = () => {
     
     try {
       await login(email, password)
-    } catch (error) {
-      alert('Error al iniciar sesión')
+    } catch (error: any) {
+      alert(error.message || 'Error al iniciar sesión')
     } finally {
       setIsLoading(false)
     }
@@ -35,41 +35,41 @@ const LoginSimple = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-600 via-primary-700 to-purple-700 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-primary-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Elementos decorativos de fondo */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-white/5 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-24 h-24 bg-gold-400/10 rounded-full animate-bounce" style={{ animationDuration: '3s' }}></div>
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-primary-300/15 rounded-full animate-ping" style={{ animationDuration: '4s' }}></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-primary-100/30 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-24 h-24 bg-gold-200/20 rounded-full animate-bounce" style={{ animationDuration: '3s' }}></div>
+        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-primary-200/25 rounded-full animate-ping" style={{ animationDuration: '4s' }}></div>
       </div>
 
       <div className="max-w-md w-full space-y-8 relative z-10">
         {/* Logo y título */}
         <div className="text-center">
-          <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl border border-white/20">
+          <div className="w-20 h-20 bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl">
             {/* Icono de casa */}
             <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
               <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
             </svg>
           </div>
-          <h2 className="text-4xl font-bold text-white mb-2">
+          <h2 className="text-4xl font-bold text-gray-800 mb-2">
             Bienvenido
           </h2>
-          <p className="text-white/80 text-lg">
+          <p className="text-gray-600 text-lg">
             Inicia sesión para continuar
           </p>
         </div>
         
-        {/* Formulario con glassmorphism */}
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white/20">
+        {/* Formulario elegante */}
+        <div className="bg-white/90 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-gray-200">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-4">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-white/90 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                   Correo electrónico
                 </label>
                 <div className="relative">
-                  <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/60" size={20} />
+                  <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
                   <input
                     id="email"
                     name="email"
@@ -77,18 +77,18 @@ const LoginSimple = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-gold-400 focus:border-transparent backdrop-blur-sm transition-all duration-300"
+                    className="w-full pl-12 pr-4 py-4 bg-white border border-gray-300 rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
                     placeholder="tu@email.com"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-white/90 mb-2">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
                   Contraseña
                 </label>
                 <div className="relative">
-                  <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/60" size={20} />
+                  <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
                   <input
                     id="password"
                     name="password"
@@ -96,13 +96,13 @@ const LoginSimple = () => {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full pl-12 pr-12 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-gold-400 focus:border-transparent backdrop-blur-sm transition-all duration-300"
+                    className="w-full pl-12 pr-12 py-4 bg-white border border-gray-300 rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300"
                     placeholder="Tu contraseña"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white transition-colors"
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                   >
                     {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                   </button>
@@ -128,10 +128,10 @@ const LoginSimple = () => {
 
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-white/20"></div>
+                  <div className="w-full border-t border-gray-300"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-transparent text-white/60">o continúa con</span>
+                  <span className="px-2 bg-white text-gray-500">o continúa con</span>
                 </div>
               </div>
 
@@ -139,7 +139,7 @@ const LoginSimple = () => {
                 type="button"
                 onClick={handleGoogleLogin}
                 disabled={isLoading}
-                className="w-full py-4 px-6 bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:transform-none flex items-center justify-center"
+                className="w-full py-4 px-6 bg-gray-50 border border-gray-300 text-gray-700 hover:bg-gray-100 font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:transform-none flex items-center justify-center"
               >
                 <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
                   <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -152,13 +152,13 @@ const LoginSimple = () => {
             </div>
 
             <div className="text-center space-y-4">
-              <Link to="/" className="text-sm text-white/80 hover:text-white transition-colors">
+              <Link to="/" className="text-sm text-gray-600 hover:text-gray-800 transition-colors">
                 ¿Olvidaste tu contraseña?
               </Link>
-              <div className="border-t border-white/20 pt-4">
-                <p className="text-white/70 text-sm">
+              <div className="border-t border-gray-300 pt-4">
+                <p className="text-gray-600 text-sm">
                   ¿No tienes cuenta?{' '}
-                  <Link to="/register" className="font-medium text-gold-400 hover:text-gold-300 transition-colors">
+                  <Link to="/register" className="font-medium text-primary-600 hover:text-primary-700 transition-colors">
                     Regístrate aquí
                   </Link>
                 </p>
