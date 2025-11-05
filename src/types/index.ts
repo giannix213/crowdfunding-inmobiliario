@@ -5,6 +5,7 @@ export interface User {
   createdAt: Date
   totalInvested: number
   activeInvestments: number
+  avatar?: string
 }
 
 export interface Project {

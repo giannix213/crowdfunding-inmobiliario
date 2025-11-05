@@ -4,6 +4,7 @@ import { User } from '../types'
 interface AuthContextType {
   user: User | null
   login: (email: string, password: string) => Promise<void>
+  loginWithGoogle: () => Promise<void>
   register: (email: string, password: string, name: string) => Promise<void>
   logout: () => void
   loading: boolean
@@ -40,11 +41,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       email,
       name: email.split('@')[0],
       createdAt: new Date(),
-      totalInvested: 0,
-      activeInvestments: 0
+      totalInvested: 2450,
+      activeInvestments: 3
     }
     setUser(mockUser)
     localStorage.setItem('crowdprop_user', JSON.stringify(mockUser))
+  }
+
+  const loginWithGoogle = async () => {
+    // Simulación de login con Google
+    const mockGoogleUser: User = {
+      id: 'google_' + Date.now(),
+      email: 'usuario@gmail.com',
+      name: 'Usuario Google',
+      createdAt: new Date(),
+      totalInvested: 2450,
+      activeInvestments: 3,
+      avatar: 'https://via.placeholder.com/100'
+    }
+    setUser(mockGoogleUser)
+    localStorage.setItem('crowdprop_user', JSON.stringify(mockGoogleUser))
   }
 
   const register = async (email: string, password: string, name: string) => {
@@ -70,6 +86,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const value = {
     user,
     login,
+    loginWithGoogle,
     register,
     logout,
     loading

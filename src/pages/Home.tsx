@@ -13,17 +13,17 @@ const Home = () => {
         {/* Elementos decorativos animados */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-40 h-40 bg-white/5 rounded-full animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-32 h-32 bg-gold-400/10 rounded-full animate-bounce" style={{ animationDuration: '3s' }}></div>
+          <div className="absolute bottom-20 right-10 w-32 h-32 bg-purple-400/15 rounded-full animate-bounce" style={{ animationDuration: '3s' }}></div>
           <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-primary-300/15 rounded-full animate-ping" style={{ animationDuration: '4s' }}></div>
-          <div className="absolute bottom-1/4 right-1/3 w-16 h-16 bg-gold-300/20 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute bottom-1/4 right-1/3 w-16 h-16 bg-purple-300/20 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
           <div className="text-center">
             <div className="animate-fade-in-up">
-              <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+              <h1 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">
                 Invierte desde{' '}
-                <span className="bg-gradient-to-r from-gold-400 via-gold-300 to-gold-500 bg-clip-text text-transparent animate-pulse">
+                <span className="bg-gradient-to-r from-gold-400 via-purple-400 to-gold-500 bg-clip-text text-transparent animate-pulse">
                   S/10
                 </span>
                 <br />
@@ -70,12 +70,12 @@ const Home = () => {
               <div className="text-gray-600 font-medium">Invertido en propiedades</div>
               <div className="w-12 h-1 bg-gradient-to-r from-gold-400 to-gold-500 mx-auto mt-4 rounded-full"></div>
             </div>
-            <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-primary-100">
-              <div className="text-4xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent mb-3">
+            <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-purple-100">
+              <div className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-primary-600 bg-clip-text text-transparent mb-3">
                 1,200+
               </div>
               <div className="text-gray-600 font-medium">Inversores activos</div>
-              <div className="w-12 h-1 bg-gradient-to-r from-primary-400 to-primary-500 mx-auto mt-4 rounded-full"></div>
+              <div className="w-12 h-1 bg-gradient-to-r from-purple-400 to-purple-500 mx-auto mt-4 rounded-full"></div>
             </div>
             <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-primary-100">
               <div className="text-4xl font-bold bg-gradient-to-r from-gold-500 to-gold-600 bg-clip-text text-transparent mb-3">
@@ -209,22 +209,21 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-primary-600 text-white">
+      {/* CTA Section - Solo para usuarios autenticados */}
+      <section className="py-20 bg-gradient-to-r from-primary-600 via-purple-600 to-primary-700 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Comienza a invertir hoy mismo
+            ¡Explora nuevas oportunidades!
           </h2>
-          <p className="text-xl mb-8 text-primary-100">
-            Únete a miles de peruanos que ya están construyendo su patrimonio 
-            a través del crowdfunding inmobiliario.
+          <p className="text-xl mb-8 text-white/90">
+            Descubre proyectos exclusivos y maximiza tu portafolio de inversión inmobiliaria.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/register" className="btn-secondary bg-white text-primary-600 hover:bg-gray-100 text-lg px-8 py-3">
-              Crear cuenta gratuita
+            <Link to="/projects" className="bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-500 hover:to-gold-600 text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+              Ver todos los proyectos
             </Link>
-            <Link to="/download" className="btn-secondary bg-white/10 border-white/30 text-white hover:bg-white/20 text-lg px-8 py-3">
-              📱 Descargar App
+            <Link to="/profile" className="bg-white/10 backdrop-blur-sm border border-white/30 text-white hover:bg-white/20 font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+              Mi perfil de inversión
             </Link>
           </div>
         </div>
