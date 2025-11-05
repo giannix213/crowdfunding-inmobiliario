@@ -9,12 +9,12 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-600 via-purple-600 to-purple-800 text-white overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-purple-700 text-white overflow-hidden">
         {/* Elementos decorativos animados */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-40 h-40 bg-white/5 rounded-full animate-pulse"></div>
           <div className="absolute bottom-20 right-10 w-32 h-32 bg-gold-400/10 rounded-full animate-bounce" style={{ animationDuration: '3s' }}></div>
-          <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-purple-300/10 rounded-full animate-ping" style={{ animationDuration: '4s' }}></div>
+          <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-primary-300/15 rounded-full animate-ping" style={{ animationDuration: '4s' }}></div>
           <div className="absolute bottom-1/4 right-1/3 w-16 h-16 bg-gold-300/20 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
         </div>
         
@@ -60,24 +60,24 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-gradient-to-r from-white via-purple-50 to-white">
+      <section className="py-20 bg-gradient-to-r from-white via-primary-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-purple-100">
-              <div className="text-4xl font-bold bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent mb-3">
+            <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-primary-100">
+              <div className="text-4xl font-bold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent mb-3">
                 S/ 2.5M+
               </div>
               <div className="text-gray-600 font-medium">Invertido en propiedades</div>
               <div className="w-12 h-1 bg-gradient-to-r from-gold-400 to-gold-500 mx-auto mt-4 rounded-full"></div>
             </div>
-            <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-purple-100">
-              <div className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-primary-600 bg-clip-text text-transparent mb-3">
+            <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-primary-100">
+              <div className="text-4xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent mb-3">
                 1,200+
               </div>
               <div className="text-gray-600 font-medium">Inversores activos</div>
-              <div className="w-12 h-1 bg-gradient-to-r from-purple-400 to-purple-500 mx-auto mt-4 rounded-full"></div>
+              <div className="w-12 h-1 bg-gradient-to-r from-primary-400 to-primary-500 mx-auto mt-4 rounded-full"></div>
             </div>
-            <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-purple-100">
+            <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-primary-100">
               <div className="text-4xl font-bold bg-gradient-to-r from-gold-500 to-gold-600 bg-clip-text text-transparent mb-3">
                 15.2%
               </div>

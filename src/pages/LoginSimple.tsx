@@ -25,19 +25,22 @@ const LoginSimple = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-600 via-purple-600 to-purple-800 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-primary-600 via-primary-700 to-purple-700 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Elementos decorativos de fondo */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-32 h-32 bg-white/5 rounded-full animate-pulse"></div>
         <div className="absolute bottom-20 right-10 w-24 h-24 bg-gold-400/10 rounded-full animate-bounce" style={{ animationDuration: '3s' }}></div>
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-purple-300/10 rounded-full animate-ping" style={{ animationDuration: '4s' }}></div>
+        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-primary-300/15 rounded-full animate-ping" style={{ animationDuration: '4s' }}></div>
       </div>
 
       <div className="max-w-md w-full space-y-8 relative z-10">
         {/* Logo y título */}
         <div className="text-center">
           <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl border border-white/20">
-            <span className="text-2xl font-bold text-white">CP</span>
+            {/* Icono de casa */}
+            <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
           </div>
           <h2 className="text-4xl font-bold text-white mb-2">
             Bienvenido
