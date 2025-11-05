@@ -8,9 +8,17 @@
     
     <meta name="description" content="Invierte desde S/10 en propiedades reales del Perú. Crowdfunding inmobiliario con transparencia total.">
     <meta name="theme-color" content="#0284c7">
+    <!-- Configuración para app nativa -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="CrowdProp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="CrowdProp">
+    
+    <!-- Ocultar elementos de navegador -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
     <link rel="manifest" href="/manifest.json">
     
@@ -19,8 +27,47 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/assets/index-BSqEeZjw.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Bl_iqE7g.css">
+    
+    <!-- CSS para experiencia nativa -->
+    <style>
+      /* Ocultar scroll bars en móvil */
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      
+      /* Prevenir zoom y selección */
+      * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      
+      /* Permitir selección en inputs */
+      input, textarea {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        user-select: text;
+      }
+      
+      /* Fullscreen para PWA */
+      html, body {
+        height: 100vh;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      /* Ocultar elementos web cuando es PWA */
+      @media (display-mode: standalone) {
+        body {
+          padding-top: env(safe-area-inset-top);
+          padding-bottom: env(safe-area-inset-bottom);
+        }
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-Cp3MR3KZ.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-C_TBH2Y9.css">
   </head>
   <body>
     <div id="root"></div>

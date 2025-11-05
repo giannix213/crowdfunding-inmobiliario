@@ -1,9 +1,9 @@
 Keep this file and signing.keystore in a safe place. You'll need these files if you want to upload future versions of your PWA to the Google Play Store.
 
 Key store file: signing.keystore
-Key store password: Tyjtuvw8jUzd
+Key store password: jhjvdZc3XD_z
 Key alias: my-key-alias
-Key password: Tyjtuvw8jUzd
+Key password: jhjvdZc3XD_z
 Signer's full name: CrowdProp Admin
 Signer's organization: CrowdProp - Crowdfunding Inmobiliario
 Signer's organizational unit: Engineering

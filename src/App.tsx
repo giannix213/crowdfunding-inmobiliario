@@ -15,9 +15,14 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="min-h-screen bg-gray-50">
-          <Navbar />
-          <main>
+        <div className="min-h-screen bg-gray-50 flex flex-col">
+          {/* Header fijo como app nativa */}
+          <div className="sticky top-0 z-50 bg-white shadow-sm">
+            <Navbar />
+          </div>
+          
+          {/* Contenido principal con scroll */}
+          <main className="flex-1 overflow-y-auto">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/projects" element={<Projects />} />
@@ -28,7 +33,12 @@ function App() {
               <Route path="/how-it-works" element={<HowItWorks />} />
             </Routes>
           </main>
-          <Footer />
+          
+          {/* Footer fijo como app nativa */}
+          <div className="bg-white border-t border-gray-200">
+            <Footer />
+          </div>
+          
           <InstallPrompt />
         </div>
       </Router>

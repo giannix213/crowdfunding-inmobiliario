@@ -4,10 +4,17 @@
   "short_name": "CrowdProp",
   "description": "Invierte desde S/10 en propiedades reales del Perú. Crowdfunding inmobiliario con transparencia total.",
   "start_url": "/",
-  "display": "standalone",
+  "display": "fullscreen",
+  "display_override": ["window-controls-overlay", "fullscreen", "standalone"],
   "background_color": "#0c4a6e",
   "theme_color": "#0284c7",
   "orientation": "portrait-primary",
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
   "categories": ["finance", "business"],
   "lang": "es",
   "scope": "/",
