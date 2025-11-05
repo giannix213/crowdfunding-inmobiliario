@@ -1,8 +1,0 @@
-[{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "app.netlify.crowdprop.twa",
-        "sha256_cert_fingerprints": ["1F:CB:67:CC:68:88:8B:55:4C:AE:FE:27:EF:C1:1A:70:EC:74:E7:B4:36:7D:D0:7D:5F:75:37:35:32:5F:71:36"]
-      }
-    }]
