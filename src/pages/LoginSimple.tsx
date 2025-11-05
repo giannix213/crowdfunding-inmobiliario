@@ -25,84 +25,110 @@ const LoginSimple = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
-            Inicia sesión en tu cuenta
+    <div className="min-h-screen bg-gradient-to-br from-primary-600 via-purple-600 to-purple-800 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Elementos decorativos de fondo */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-white/5 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-24 h-24 bg-gold-400/10 rounded-full animate-bounce" style={{ animationDuration: '3s' }}></div>
+        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-purple-300/10 rounded-full animate-ping" style={{ animationDuration: '4s' }}></div>
+      </div>
+
+      <div className="max-w-md w-full space-y-8 relative z-10">
+        {/* Logo y título */}
+        <div className="text-center">
+          <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl border border-white/20">
+            <span className="text-2xl font-bold text-white">CP</span>
+          </div>
+          <h2 className="text-4xl font-bold text-white mb-2">
+            Bienvenido
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            ¿No tienes cuenta?{' '}
-            <Link to="/register" className="font-medium text-primary-600 hover:text-primary-500">
-              Regístrate aquí
-            </Link>
+          <p className="text-white/80 text-lg">
+            Inicia sesión para continuar
           </p>
         </div>
         
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Correo electrónico
-              </label>
-              <div className="mt-1 relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  placeholder="tu@email.com"
-                />
+        {/* Formulario con glassmorphism */}
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white/20">
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            <div className="space-y-4">
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-white/90 mb-2">
+                  Correo electrónico
+                </label>
+                <div className="relative">
+                  <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/60" size={20} />
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-gold-400 focus:border-transparent backdrop-blur-sm transition-all duration-300"
+                    placeholder="tu@email.com"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-white/90 mb-2">
+                  Contraseña
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/60" size={20} />
+                  <input
+                    id="password"
+                    name="password"
+                    type={showPassword ? 'text' : 'password'}
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full pl-12 pr-12 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:ring-2 focus:ring-gold-400 focus:border-transparent backdrop-blur-sm transition-all duration-300"
+                    placeholder="Tu contraseña"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white/60 hover:text-white transition-colors"
+                  >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
               </div>
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Contraseña
-              </label>
-              <div className="mt-1 relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                <input
-                  id="password"
-                  name="password"
-                  type={showPassword ? 'text' : 'password'}
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  placeholder="Tu contraseña"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                >
-                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                </button>
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full py-4 px-6 bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-500 hover:to-gold-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:transform-none"
+              >
+                {isLoading ? (
+                  <div className="flex items-center justify-center">
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
+                    Iniciando sesión...
+                  </div>
+                ) : (
+                  'Iniciar sesión'
+                )}
+              </button>
+            </div>
+
+            <div className="text-center space-y-4">
+              <Link to="/" className="text-sm text-white/80 hover:text-white transition-colors">
+                ¿Olvidaste tu contraseña?
+              </Link>
+              <div className="border-t border-white/20 pt-4">
+                <p className="text-white/70 text-sm">
+                  ¿No tienes cuenta?{' '}
+                  <Link to="/register" className="font-medium text-gold-400 hover:text-gold-300 transition-colors">
+                    Regístrate aquí
+                  </Link>
+                </p>
               </div>
             </div>
-          </div>
-
-          <div>
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50"
-            >
-              {isLoading ? 'Iniciando sesión...' : 'Iniciar sesión'}
-            </button>
-          </div>
-
-          <div className="text-center">
-            <Link to="/" className="text-sm text-primary-600 hover:text-primary-500">
-              ¿Olvidaste tu contraseña?
-            </Link>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   )
